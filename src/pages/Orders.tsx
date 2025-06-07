@@ -162,7 +162,7 @@ export function Orders() {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-3">
       {/* Compact Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center space-x-4">
@@ -219,23 +219,23 @@ export function Orders() {
       </div>
 
       {/* Compact Stats Overview */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
-        <div className="bg-white p-3 rounded-lg border">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        <div className="bg-white p-2.5 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs text-gray-600">Total Orders</p>
-              <p className="text-xl font-bold">{totalOrders}</p>
+              <p className="text-[10px] text-gray-600">Total Orders</p>
+              <p className="text-lg font-bold">{totalOrders}</p>
             </div>
-            <Package className="h-6 w-6 text-gray-400" />
+            <Package className="h-5 w-5 text-gray-400" />
           </div>
         </div>
-        <div className="bg-white p-3 rounded-lg border">
+        <div className="bg-white p-2.5 rounded-lg border">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-xs text-gray-600">Pending</p>
-              <p className="text-xl font-bold text-amber-600">{pendingTotal}</p>
+              <p className="text-[10px] text-gray-600">Pending</p>
+              <p className="text-lg font-bold text-amber-600">{pendingTotal}</p>
             </div>
-            <Calendar className="h-6 w-6 text-amber-400" />
+            <Calendar className="h-5 w-5 text-amber-400" />
           </div>
         </div>
         <div className="bg-white p-3 rounded-lg border">
@@ -314,7 +314,7 @@ export function Orders() {
 
       {/* Orders Display */}
       {viewMode === 'cards' ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3">
           {filteredOrders.map((order) => (
             <OrderCard
               key={order.id}
@@ -331,7 +331,7 @@ export function Orders() {
           ))}
         </div>
       ) : (
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           {filteredOrders.map((order) => (
             <OrderRowCard
               key={order.id}

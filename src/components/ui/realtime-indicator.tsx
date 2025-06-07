@@ -69,18 +69,15 @@ export function RealtimeIndicator() {
   const Icon = config.icon
 
   return (
-    <div className="flex items-center space-x-1">
-      <div 
-        className={cn(
-          "flex items-center space-x-1 px-2 py-1 rounded-full text-xs transition-colors",
-          config.className
-        )}
-        title={config.title}
-      >
-        <Icon className="h-3 w-3" />
-        <span className="hidden sm:inline">{config.text}</span>
-        <div className={cn("h-1.5 w-1.5 rounded-full", config.dotClass)}></div>
-      </div>
+    <div 
+      className={cn(
+        "flex items-center p-1 rounded-full transition-colors",
+        config.className
+      )}
+      title={config.title}
+    >
+      <Icon className="h-3 w-3" />
+      <div className={cn("h-1.5 w-1.5 rounded-full ml-0.5", config.dotClass)}></div>
     </div>
   )
 }

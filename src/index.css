@@ -152,3 +152,44 @@
 .zoom-in-95 {
   animation: zoom-in-95 200ms ease-out;
 }
+
+/* Zoom-responsive layout adjustments */
+@media (min-resolution: 0.75dppx) and (max-resolution: 0.95dppx) {
+  /* When zoomed out to 75-95% */
+  .grid {
+    gap: 0.75rem !important;
+  }
+  
+  body {
+    font-size: 14px;
+  }
+}
+
+@media (min-resolution: 0.5dppx) and (max-resolution: 0.74dppx) {
+  /* When zoomed out to 50-74% */
+  .grid {
+    gap: 0.5rem !important;
+  }
+  
+  body {
+    font-size: 13px;
+  }
+  
+  /* Ensure cards maintain minimum sizes */
+  .grid > * {
+    min-width: 180px;
+  }
+}
+
+/* Ensure equal spacing in grids */
+.grid {
+  display: grid;
+  grid-auto-rows: 1fr;
+}
+
+/* Maintain aspect ratios on zoom */
+@supports (zoom: 1) {
+  .maintain-ratio {
+    zoom: 1;
+  }
+}

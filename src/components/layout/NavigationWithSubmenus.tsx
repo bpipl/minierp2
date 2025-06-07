@@ -37,7 +37,6 @@ import {
 import { cn } from '@/lib/utils'
 import { useState, useEffect, useRef } from 'react'
 import { RealtimeIndicator } from '@/components/ui/realtime-indicator'
-import { ConnectionStatus } from '@/components/ui/connection-status'
 
 interface SubMenuItem {
   name: string
@@ -130,7 +129,7 @@ export function NavigationWithSubmenus() {
       ]
     },
     {
-      name: 'Screening/QC',
+      name: 'QC',
       href: '/qc',
       icon: BarChart3,
       show: hasPermission('MANAGE_SCREENING_QC'),
@@ -231,16 +230,16 @@ export function NavigationWithSubmenus() {
 
   return (
     <nav className="bg-white shadow-sm border-b relative z-50">
-      <div className="max-w-full mx-auto px-3 sm:px-4 lg:px-6">
-        <div className="flex justify-between h-12">
+      <div className="max-w-full mx-auto px-2 sm:px-3 lg:px-4">
+        <div className="flex justify-between h-10">
           <div className="flex items-center">
             <div className="flex-shrink-0">
-              <h1 className="text-lg font-bold text-gray-900">
+              <h1 className="text-base font-bold text-gray-900">
                 Mini-ERP
               </h1>
             </div>
             <div className="hidden lg:block">
-              <div className="ml-8 flex items-baseline space-x-1">
+              <div className="ml-4 flex items-baseline space-x-0.5">
                 {visibleItems.map((item) => {
                   const Icon = item.icon
                   const isActive = location.pathname === item.href || 
@@ -258,18 +257,18 @@ export function NavigationWithSubmenus() {
                       <Link
                         to={item.href}
                         className={cn(
-                          "px-2 py-1.5 rounded-md text-xs font-medium flex items-center transition-all duration-200",
+                          "px-1.5 py-1 rounded-md text-[11px] font-medium flex items-center transition-all duration-200",
                           isActive
                             ? "bg-gray-100 text-gray-900"
                             : "text-gray-600 hover:text-gray-900 hover:bg-gray-50",
                           hasSubmenu && "pr-1"
                         )}
                       >
-                        <Icon className="mr-1.5 h-3.5 w-3.5" />
+                        <Icon className="mr-1 h-3 w-3" />
                         {item.name}
                         {hasSubmenu && (
                           <ChevronDown className={cn(
-                            "ml-0.5 h-3 w-3 transition-transform duration-200",
+                            "ml-0.5 h-2.5 w-2.5 transition-transform duration-200",
                             activeDropdown === item.name && "rotate-180"
                           )} />
                         )}
@@ -342,9 +341,8 @@ export function NavigationWithSubmenus() {
             </div>
           </div>
           
-          <div className="flex items-center space-x-2">
-            {/* Connection status indicators */}
-            <ConnectionStatus />
+          <div className="flex items-center space-x-1">
+            {/* Real-time indicator only */}
             <RealtimeIndicator />
             
             {/* User menu dropdown */}

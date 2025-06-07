@@ -82,14 +82,14 @@ export function OrderCard({
 
   return (
     <Card className="hover:shadow-lg transition-shadow duration-200">
-      <CardHeader className="pb-3">
+      <CardHeader className="pb-2 pt-3">
         <div className="flex items-start justify-between">
           {/* Left side - UID, Part Number */}
           <div className="flex items-center space-x-3">
-            <div className="text-lg font-bold text-gray-900">
+            <div className="text-base font-bold text-gray-900">
               {order.uid || 'A001'}
             </div>
-            <div className="text-sm text-gray-600">
+            <div className="text-xs text-gray-600">
               {order.customer_part_number || 'L12345-601'}
             </div>
           </div>
@@ -106,18 +106,18 @@ export function OrderCard({
 
         {/* Title/Description */}
         <div className="mt-2">
-          <h3 className="font-medium text-gray-900">
+          <h3 className="text-sm font-medium text-gray-900">
             {order.bpi_description || 'Laptop 840 G10 LCD'}
           </h3>
-          <p className="text-sm text-gray-500 mt-1">
+          <p className="text-xs text-gray-500 mt-0.5">
             {order.customer_description || 'EliteBook 840 G10 LCD Screen 14"'}
           </p>
         </div>
       </CardHeader>
 
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-3 pt-2">
         {/* Key Dates and Info */}
-        <div className="flex items-center justify-between text-sm">
+        <div className="flex items-center justify-between text-xs">
           <div className="flex items-center space-x-4">
             <div>
               <span className="text-gray-500">PO Date:</span>
@@ -126,11 +126,11 @@ export function OrderCard({
             <div className="flex items-center">
               <span className="text-gray-500">ETA:</span>
               <div className={cn(
-                "ml-1 px-2 py-0.5 rounded-full text-xs font-medium inline-flex items-center",
+                "ml-1 px-1.5 py-0.5 rounded-full text-[10px] font-medium inline-flex items-center",
                 etaStatusColors[order.currentEtaStatus || 'rfq'],
                 order.isBlinking && "animate-pulse"
               )}>
-                <Clock className="h-3 w-3 mr-1" />
+                <Clock className="h-2.5 w-2.5 mr-0.5" />
                 {order.current_eta || '220124'}
               </div>
             </div>
@@ -145,12 +145,12 @@ export function OrderCard({
         {/* Progressive Quantity Bar */}
         <div>
           <div className="flex items-center justify-between mb-1">
-            <span className="text-xs text-gray-500">Progress</span>
-            <span className="text-xs text-gray-500">
+            <span className="text-[10px] text-gray-500">Progress</span>
+            <span className="text-[10px] text-gray-500">
               {totalProcessed} of {quantities.total_order_quantity}
             </span>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
+          <div className="w-full bg-gray-200 rounded-full h-1.5 overflow-hidden">
             <div className="h-full flex">
               {/* Completed portion */}
               <div 
@@ -174,26 +174,26 @@ export function OrderCard({
         {/* Quantity Tags/Badges */}
         <div className="flex flex-wrap gap-2">
           {totalPending > 0 && (
-            <Badge variant="outline" className="text-xs">
-              <AlertCircle className="h-3 w-3 mr-1" />
+            <Badge variant="outline" className="text-[10px] py-0.5 px-1.5">
+              <AlertCircle className="h-2.5 w-2.5 mr-0.5" />
               {totalPending} Pending
             </Badge>
           )}
           {totalInQC > 0 && (
-            <Badge variant="outline" className="text-xs text-blue-600 border-blue-200">
-              <Package className="h-3 w-3 mr-1" />
+            <Badge variant="outline" className="text-[10px] text-blue-600 border-blue-200 py-0.5 px-1.5">
+              <Package className="h-2.5 w-2.5 mr-0.5" />
               {totalInQC} QC
             </Badge>
           )}
           {totalProcessed > 0 && (
-            <Badge variant="outline" className="text-xs text-green-600 border-green-200">
-              <CheckCircle2 className="h-3 w-3 mr-1" />
+            <Badge variant="outline" className="text-[10px] text-green-600 border-green-200 py-0.5 px-1.5">
+              <CheckCircle2 className="h-2.5 w-2.5 mr-0.5" />
               {totalProcessed} Completed
             </Badge>
           )}
           {totalCancelled > 0 && (
-            <Badge variant="outline" className="text-xs text-red-600 border-red-200">
-              <XCircle className="h-3 w-3 mr-1" />
+            <Badge variant="outline" className="text-[10px] text-red-600 border-red-200 py-0.5 px-1.5">
+              <XCircle className="h-2.5 w-2.5 mr-0.5" />
               {totalCancelled} Cancelled
             </Badge>
           )}

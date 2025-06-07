@@ -57,7 +57,7 @@ export function OrderRowCard({
   // ETA status styling
   const getEtaStatusStyle = () => {
     const status = order.currentEtaStatus
-    const baseClasses = "px-2 py-1 rounded-full text-xs font-medium"
+    const baseClasses = "px-1.5 py-0.5 rounded-full text-[10px] font-medium"
     
     if (order.isBlinking) {
       return `${baseClasses} bg-red-100 text-red-800 animate-pulse`
@@ -81,16 +81,16 @@ export function OrderRowCard({
   return (
     <Card className="w-full transition-all duration-200 hover:shadow-md">
       {/* Main Row Content */}
-      <div className="p-4">
+      <div className="p-3">
         <div className="flex items-center justify-between">
           {/* Left Section - Core Info */}
           <div className="flex items-center space-x-4 flex-1 min-w-0">
             {/* UID and Status */}
             <div className="flex flex-col items-center space-y-1">
-              <Badge variant="outline" className="font-mono text-sm">
+              <Badge variant="outline" className="font-mono text-xs">
                 {order.uid}
               </Badge>
-              <Badge variant="secondary" className="text-xs">
+              <Badge variant="secondary" className="text-[10px]">
                 QC
               </Badge>
             </div>
@@ -98,34 +98,34 @@ export function OrderRowCard({
             {/* Part Info */}
             <div className="flex-1 min-w-0">
               <div className="flex items-center space-x-2 mb-1">
-                <h3 className="font-semibold text-gray-900 truncate">
+                <h3 className="text-sm font-semibold text-gray-900 truncate">
                   {order.customer_part_number}
                 </h3>
                 <div className={getEtaStatusStyle()}>
                   {order.current_eta}
                 </div>
               </div>
-              <p className="text-sm text-gray-600 truncate mb-1">
+              <p className="text-xs text-gray-600 truncate mb-0.5">
                 {order.bpi_description}
               </p>
-              <p className="text-xs text-gray-500 truncate">
+              <p className="text-[10px] text-gray-500 truncate">
                 {order.customer_description}
               </p>
             </div>
 
             {/* Progress Bar */}
-            <div className="w-32 space-y-1">
-              <div className="flex justify-between text-xs text-gray-500">
+            <div className="w-28 space-y-0.5">
+              <div className="flex justify-between text-[10px] text-gray-500">
                 <span>Progress</span>
                 <span>{Math.round(progressPercentage)}%</span>
               </div>
-              <div className="w-full bg-gray-200 rounded-full h-2">
+              <div className="w-full bg-gray-200 rounded-full h-1.5">
                 <div 
-                  className="bg-green-600 h-2 rounded-full transition-all duration-300"
+                  className="bg-green-600 h-1.5 rounded-full transition-all duration-300"
                   style={{ width: `${progressPercentage}%` }}
                 />
               </div>
-              <div className="flex justify-between text-xs">
+              <div className="flex justify-between text-[10px]">
                 <span className="text-amber-600">{pendingQuantity} Pending</span>
                 <span className="text-blue-600">{inProgressQuantity} QC</span>
                 <span className="text-green-600">{completedQuantity} Done</span>
@@ -134,24 +134,24 @@ export function OrderRowCard({
 
             {/* Global Pending */}
             <div className="text-center">
-              <div className="text-lg font-bold text-orange-600">
+              <div className="text-base font-bold text-orange-600">
                 {order.globalPendingForHP}
               </div>
-              <div className="text-xs text-gray-500">Left</div>
+              <div className="text-[10px] text-gray-500">Left</div>
             </div>
           </div>
 
           {/* Right Section - Actions */}
           <div className="flex items-center space-x-2 ml-4">
             {/* Compact Action Buttons */}
-            <Button variant="outline" size="sm" onClick={onPrintLabel} title="Print Label">
-              <Printer className="h-4 w-4" />
+            <Button variant="outline" size="sm" onClick={onPrintLabel} title="Print Label" className="h-7 w-7 p-0">
+              <Printer className="h-3 w-3" />
             </Button>
-            <Button variant="outline" size="sm" onClick={onManageCT} title="CT Numbers">
-              <Hash className="h-4 w-4" />
+            <Button variant="outline" size="sm" onClick={onManageCT} title="CT Numbers" className="h-7 w-7 p-0">
+              <Hash className="h-3 w-3" />
             </Button>
-            <Button variant="outline" size="sm" onClick={onUpdateStatus} title="Update Status">
-              <RotateCcw className="h-4 w-4" />
+            <Button variant="outline" size="sm" onClick={onUpdateStatus} title="Update Status" className="h-7 w-7 p-0">
+              <RotateCcw className="h-3 w-3" />
             </Button>
             <Button variant="outline" size="sm" onClick={onViewImages} title="View Images">
               <Image className="h-4 w-4" />

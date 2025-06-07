@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useAuth } from '@/hooks/useAuth'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
 import { WhatsAppSettings } from '@/components/admin/WhatsAppSettings'
 import { ApprovalWorkflowDashboard } from '@/components/admin/ApprovalWorkflowDashboard'
 import { 
@@ -11,13 +12,14 @@ import {
   Shield,
   Bell,
   Palette,
-  CheckSquare
+  CheckSquare,
+  UserCog
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 export function Settings() {
   const { hasPermission } = useAuth()
-  const [activeSection, setActiveSection] = useState<'general' | 'whatsapp' | 'approvals' | 'users' | 'database' | 'security' | 'notifications' | 'appearance'>('whatsapp')
+  const [activeSection, setActiveSection] = useState<'general' | 'whatsapp' | 'approvals' | 'users' | 'database' | 'security' | 'notifications' | 'appearance' | 'system'>('whatsapp')
 
   // Check if user has admin access
   if (!hasPermission('ACCESS_ADMIN_PANEL')) {
@@ -84,6 +86,12 @@ export function Settings() {
       name: 'Appearance',
       icon: Palette,
       description: 'UI themes and customization'
+    },
+    {
+      id: 'system',
+      name: 'System Configuration',
+      icon: UserCog,
+      description: 'User roles, groups, and permissions'
     }
   ]
 
@@ -167,6 +175,88 @@ export function Settings() {
                   <p className="text-gray-500">
                     User and role management interface will be implemented in the next phase.
                   </p>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
+          {activeSection === 'system' && (
+            <Card>
+              <CardHeader>
+                <CardTitle>System Configuration</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-6">
+                  {/* User Role Management Section */}
+                  <div className="border rounded-lg p-4">
+                    <h3 className="text-base font-semibold text-gray-900 mb-2 flex items-center">
+                      <Shield className="h-4 w-4 mr-2" />
+                      User Role Management
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-4">
+                      Configure comprehensive user roles with group-wise and individual permissions.
+                    </p>
+                    <div className="space-y-3">
+                      <div className="flex items-center justify-between p-3 bg-gray-50 rounded-md">
+                        <div>
+                          <p className="text-sm font-medium">Group-Based Permissions</p>
+                          <p className="text-xs text-gray-500">Assign users to groups with predefined permissions</p>
+                        </div>
+                        <Badge variant="secondary">Coming Soon</Badge>
+                      </div>
+                      <div className="flex items-center justify-between p-3 bg-gray-50 rounded-md">
+                        <div>
+                          <p className="text-sm font-medium">Individual User Permissions</p>
+                          <p className="text-xs text-gray-500">Override group permissions for specific users</p>
+                        </div>
+                        <Badge variant="secondary">Coming Soon</Badge>
+                      </div>
+                      <div className="flex items-center justify-between p-3 bg-gray-50 rounded-md">
+                        <div>
+                          <p className="text-sm font-medium">Permission Templates</p>
+                          <p className="text-xs text-gray-500">Create and apply permission templates</p>
+                        </div>
+                        <Badge variant="secondary">Coming Soon</Badge>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* System Settings Section */}
+                  <div className="border rounded-lg p-4">
+                    <h3 className="text-base font-semibold text-gray-900 mb-2 flex items-center">
+                      <UserCog className="h-4 w-4 mr-2" />
+                      System Settings
+                    </h3>
+                    <p className="text-sm text-gray-600 mb-4">
+                      Core system configuration and behavior settings.
+                    </p>
+                    <div className="grid gap-4">
+                      <div className="flex items-center justify-between">
+                        <label className="text-sm font-medium">Default View Mode</label>
+                        <select className="text-xs border rounded px-2 py-1">
+                          <option>Row View</option>
+                          <option>Card View</option>
+                        </select>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <label className="text-sm font-medium">Items Per Page</label>
+                        <select className="text-xs border rounded px-2 py-1">
+                          <option>20</option>
+                          <option>50</option>
+                          <option>100</option>
+                        </select>
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <label className="text-sm font-medium">Auto-refresh Interval</label>
+                        <select className="text-xs border rounded px-2 py-1">
+                          <option>5 seconds</option>
+                          <option>10 seconds</option>
+                          <option>30 seconds</option>
+                          <option>Off</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
